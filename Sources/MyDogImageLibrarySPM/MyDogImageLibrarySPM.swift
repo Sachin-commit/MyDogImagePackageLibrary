@@ -6,7 +6,7 @@ public class DogImageLibrary {
     private var currentIndex: Int = -1
     private var dogImages = [String]()
     
-    init() {
+    public init() {
         Task {
             await self.loadImages()
         }
