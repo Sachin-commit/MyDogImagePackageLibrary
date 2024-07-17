@@ -13,7 +13,7 @@ public class DogImageLibrary {
     }
     
     @MainActor
-    private func loadImages() async {
+    public func loadImages() async {
         let networking = Networking()
         do {
             let dogImages = try await networking.fetchDogImages()
