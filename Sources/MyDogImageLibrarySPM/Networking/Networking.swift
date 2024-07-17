@@ -16,10 +16,8 @@ enum NetworkError: Error {
 
 final class Networking {
     
-    static let sharedInstance = Networking()
-    
-    func fetchDogImages(count: Int) async throws -> Dog {
-        let urlString = "\(Constants.API_URL)\(count)"
+    func fetchDogImages(number: Int = 10) async throws -> [String] {
+        let urlString = "\(Constants.API_URL)\(number)"
         guard let url = URL(string: urlString) else { throw NetworkError.invalidURL(Constants.Invalid_URL) }
         let (data, response) = try await URLSession.shared.data(from: url)
         if let response = response as? HTTPURLResponse {
@@ -27,17 +25,15 @@ final class Networking {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
-                    return try decoder.decode(Dog.self, from: data)
-                }
-                catch {
+                    let dogs = try decoder.decode(Dog.self, from: data)
+                    return dogs.message
+                } catch {
                     throw NetworkError.invalidData(Constants.Invalid_Data)
                 }
-            }
-            else {
+            } else {
                 throw NetworkError.apiError("\(Constants.API_Error)\(response.statusCode)")
             }
-        }
-        else {
+        } else {
             throw NetworkError.unexpected(Constants.Unexpected_Error)
         }
     }
