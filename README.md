@@ -1,6 +1,6 @@
-# DogImageLibrary
+# My Dog Image Package Library
 
-![Dog Image](https://images.dog.ceo/breeds/leonberg/n02111129_2785.jpg)
+![Dog Image](https://images.dog.ceo/breeds/springer-english/n02102040_403.jpg)
 
 > A Swift library to fetch and display random dog images from the Dog CEO's Dog API.
 
@@ -14,6 +14,7 @@ DogImageLibrary is a lightweight Swift library that provides an easy way to fetc
 
 - Xcode 12 or later
 - Swift 5.3 or later
+- iOS 15 or later
 
 ### Adding to Your Project
 
@@ -42,16 +43,17 @@ To use DogImageLibrary in your project, you need to initialize the library and f
 ### Fetching Dog Images
 
 ```swift
-import DogImageLibrary
+import MyDogImageLibrarySPM
 
 // Initialize the library
 let dogImageLibrary = DogImageLibrary()
 
-// Fetch and print the first dog image URL
-if let firstImage = dogImageLibrary.getImage() {
-    print("First image: \(firstImage)")
+// Fetch and print image
+dogImageLibrary.getImage { image in
+    print("First image: \(image)")
 }
 
-// Fetch and print the first 5 dog images
-let images = dogImageLibrary.getImages(number: 5)
-print("First 5 images: \(images)")
+// Fetch and print the images array
+dogImageLibrary.getImages(number: 5) { images in
+    print("First 5 images: \(images)")
+}
