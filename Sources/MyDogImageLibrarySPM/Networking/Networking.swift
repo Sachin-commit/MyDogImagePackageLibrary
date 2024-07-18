@@ -15,7 +15,7 @@ public enum NetworkError: Error {
 }
 
 public class Networking {
-    
+    public init (){}
     public func fetchDogImages(number: Int, completion: @escaping (Result<[String], NetworkError>) -> Void) {
         let urlString = "\(Constants.API_URL)\(number)"
         guard let url = URL(string: urlString) else {

@@ -9,7 +9,7 @@ public class DogImageLibrary {
     var number = 1
     private let networking: Networking
     
-    init(networking: Networking = Networking()) {
+    public init(networking: Networking = Networking()) {
         self.networking = networking
         fetchImages(number: number) { _ in }
     }
