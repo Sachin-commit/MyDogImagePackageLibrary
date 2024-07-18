@@ -7,9 +7,10 @@ public class DogImageLibrary {
     private var dogImages = [String]()
     private var listDogImages = [String]()
     var number = 1
-    private let networking = Networking()
+    private let networking: Networking
     
-    public init() {
+    init(networking: Networking = Networking()) {
+        self.networking = networking
         fetchImages(number: number) { _ in }
     }
     

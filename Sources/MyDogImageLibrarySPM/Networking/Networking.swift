@@ -14,7 +14,7 @@ enum NetworkError: Error {
     case invalidData(_ error: String)
 }
 
-final class Networking {
+class Networking {
     
     func fetchDogImages(number: Int, completion: @escaping (Result<[String], NetworkError>) -> Void) {
         let urlString = "\(Constants.API_URL)\(number)"
