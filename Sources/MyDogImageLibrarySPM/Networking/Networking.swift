@@ -7,16 +7,16 @@
 
 import Foundation
 
-enum NetworkError: Error {
+public enum NetworkError: Error {
     case invalidURL(_ error: String)
     case unexpected(_ error: String)
     case apiError(_ error: String)
     case invalidData(_ error: String)
 }
 
-class Networking {
+public class Networking {
     
-    func fetchDogImages(number: Int, completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    public func fetchDogImages(number: Int, completion: @escaping (Result<[String], NetworkError>) -> Void) {
         let urlString = "\(Constants.API_URL)\(number)"
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL(Constants.Invalid_URL)))
